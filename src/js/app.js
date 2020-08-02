@@ -1,25 +1,27 @@
 class Team {
-    constructor(name, type, health, level, attack, defance) {
-        this.name = name;
-        this.type = type;
-        this.health = health;
-        this.level = level;
-        this.attack = attack;
-        this.defance = defance;
+    constructor(arr) {
+        this.arrayPerson = arr;
     }
-}
 
-Team[Symbol.iterator] = function(obj) {
-    return {
-        next() {
-            if (obj instanceof Team) {
-                return {
-                    done: false,
-                    value: obj
-                }
-            } else {
-                return {
-                    done: true
+    getIndex(inx) {
+        return this.arrayPerson[inx];
+    }
+
+    [Symbol.iterator]() {
+        let current = 0;
+        let last = this.arrayPerson.length;
+
+        return {
+            next() {
+                if(current < last) {
+                    return {
+                        done: false,
+                        value: current++
+                    }
+                } else {
+                    return {
+                        done: true
+                    }
                 }
             }
         }
